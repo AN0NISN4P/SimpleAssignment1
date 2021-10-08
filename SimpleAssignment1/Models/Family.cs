@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using Models;
 
 namespace Models {
 public class Family {
