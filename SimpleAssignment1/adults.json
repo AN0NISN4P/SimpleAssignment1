@@ -1,6 +1,6 @@
 [
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Mascot",
       "Salary": 99821
     },
@@ -15,7 +15,7 @@
     "Sex": "F"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Front End Web Developer",
       "Salary": 66408
     },
@@ -30,7 +30,7 @@
     "Sex": "F"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Business Development Manager",
       "Salary": 71456
     },
@@ -45,7 +45,7 @@
     "Sex": "F"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Skin Care Specialist",
       "Salary": 20545
     },
@@ -60,7 +60,7 @@
     "Sex": "F"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Vice Principal",
       "Salary": 72901
     },
@@ -75,7 +75,7 @@
     "Sex": "F"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Teacher",
       "Salary": 91588
     },
@@ -90,7 +90,7 @@
     "Sex": "M"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Service Advisor",
       "Salary": 72532
     },
@@ -105,7 +105,7 @@
     "Sex": "F"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Janitor",
       "Salary": 61437
     },
@@ -120,7 +120,7 @@
     "Sex": "F"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Office Clerk",
       "Salary": 41332
     },
@@ -135,7 +135,7 @@
     "Sex": "F"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Writer",
       "Salary": 63392
     },
@@ -150,7 +150,7 @@
     "Sex": "F"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Casino Host",
       "Salary": 35445
     },
@@ -165,7 +165,7 @@
     "Sex": "M"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Nurse",
       "Salary": 36813
     },
@@ -180,7 +180,7 @@
     "Sex": "F"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Web Administrator",
       "Salary": 44759
     },
@@ -195,7 +195,7 @@
     "Sex": "M"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Science Teacher",
       "Salary": 55346
     },
@@ -210,7 +210,7 @@
     "Sex": "M"
   },
   {
-    "JobTitle": {
+    "Job": {
       "JobTitle": "Call Center Agent",
       "Salary": 20308
     },

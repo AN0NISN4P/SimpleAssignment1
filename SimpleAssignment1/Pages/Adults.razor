@@ -8,13 +8,18 @@
 
 <h3>Adult list</h3>
 
-@if (adults == null)
+<p>
+    Name Search
+    <input type="text" @oninput="@((arg) => FilterByName(arg))"/>
+</p>
+
+@if (_shownAdults == null)
 {
     <p>
         <em>Loading...</em>
     </p>
 }
-else if (!adults.Any())
+else if (!_shownAdults.Any())
 {
     <p>
         <em>No Adults exist. Please add some.</em>
@@ -35,10 +40,11 @@ else
             <th>Height</th>
             <th>Sex</th>
             <th>Job</th>
+            <th>Salary</th>
         </tr>
         </thead>
         <tbody>
-        @foreach (var item in adults)
+        @foreach (var item in _shownAdults)
         {
             <tr>
                 <td>@item.Id</td>
@@ -50,7 +56,8 @@ else
                 <td>@item.Weight</td>
                 <td>@item.Height</td>
                 <td>@item.Sex</td>
-                <td>@item.JobTitle</td>
+                <td>@item.Job.JobTitle</td>
+                <td>@item.Job.Salary</td>
             </tr>
         }
         </tbody>
@@ -59,13 +66,32 @@ else
 
 
 @code {
-    private IList<Adult> adults;
-    private FileContext fileContext;
+    private IList<Adult> _allAdults;
+    private IList<Adult> _shownAdults;
+    private FileContext _fileContext;
 
     protected override async Task OnInitializedAsync()
     {
-        adults = fileContext.Adults;
+        _fileContext = new();
+        _allAdults = _fileContext.Adults;
+        _shownAdults = _allAdults;
     }
 
-}
+
+    private void FilterByName(ChangeEventArgs evt)
+    {
+        string name = evt.Value?.ToString();
+
+        Console.WriteLine(name);
+
+        if (name.Length != 0)
+        {
+            _shownAdults = _allAdults.Where(a => a.FirstName.ToLower().Contains(name.ToLower()) || a.LastName.ToLower().Contains(name.ToLower())).ToList();
+        }
+        else
+        {
+            _shownAdults = _allAdults;
+        }
+    }
+
 }
