@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimpleAssignment1.Data;
 
 namespace SimpleAssignment1 {
 	public class Startup {
@@ -19,6 +20,7 @@ namespace SimpleAssignment1 {
 		public void ConfigureServices(IServiceCollection services) {
 			services.AddRazorPages( );
 			services.AddServerSideBlazor();
+			services.AddSingleton<IPersonHandler, PersonHandler>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
