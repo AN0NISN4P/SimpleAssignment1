@@ -208,5 +208,20 @@
     "Weight": 81.8,
     "Height": 172,
     "Sex": "M"
+  },
+  {
+    "Job": {
+      "JobTitle": "Steam",
+      "Salary": 23445
+    },
+    "Id": 15,
+    "FirstName": "Sebastian",
+    "LastName": "Baltzer",
+    "HairColor": "Brown",
+    "EyeColor": "Green",
+    "Age": 24,
+    "Weight": 90,
+    "Height": 190,
+    "Sex": "M"
   }
 ]

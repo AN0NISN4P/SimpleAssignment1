@@ -3,7 +3,7 @@
 @using SimpleAssignment1.Data
 @inject IPersonHandler _personHandler
 @inject NavigationManager _navMgr
-@*@attribute [Authorize(Policy = "SecurityLevel3")]*@
+@attribute [Authorize(Policy = "SecurityLevel3")]
 
 @if (_adult == null) {
     <p>Adult not found</p>
@@ -90,7 +90,7 @@
             </div>
 
             <p class="actions">
-                <button class="btn btn-outline-dark" type="submit">Save Changes</button>
+                <button class="btn btn-outline-dark btn-primary" type="submit">Save Changes</button>
             </p>
         </EditForm>
 }

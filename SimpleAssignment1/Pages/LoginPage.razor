@@ -2,28 +2,26 @@
 @namespace LoginComponent
 @using SimpleAssignment1.Authentication
 
-@inject AuthenticationStateProvider AuthenticationStateProvider
-@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider _auth
+@inject NavigationManager _navMgr
 
 <AuthorizeView>
     <NotAuthorized>
-        <div class="form-group">
-            <label>User name:</label>
-            <input type="text" placeholder="user name" @bind-value="username" />
+        <div class="form-group my-auto">
+            <input type="text" placeholder="username" @bind-value="username" />
         </div>
-        <div class="form-group">
-            <label>Password</label>
+        <div class="form-group my-auto ml-2 border-left border-dark pl-2">
             <input type="password" placeholder="password" @bind-value="password" />
         </div>
         <div style="color:red">@errorMessage</div>
 
         <a href="" @onclick="PerformLogin">
-            Login
+            <button class="btn btn-outline-dark btn-primary">Log in</button>
         </a>
     </NotAuthorized>
     <Authorized>
         <a href="" @onclick="PerformLogout">
-            Log out
+            <button class="btn btn-outline-dark btn-primary">Log out</button>
         </a>
     </Authorized>
 </AuthorizeView>
@@ -36,11 +34,11 @@
     public async Task PerformLogin( ) {
         errorMessage = "";
         try {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+            ((CustomAuthenticationStateProvider) _auth).ValidateLogin(username, password);
             username = "";
             password = "";
         } catch (Exception e) {
-            errorMessage = e.Message;
+            errorMessage = "Invalid Credentials";
         }
     }
 
@@ -49,8 +47,8 @@
         username = "";
         password = "";
         try {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout( );
-            NavigationManager.NavigateTo("/");
+            ((CustomAuthenticationStateProvider) _auth).Logout( );
+            _navMgr.NavigateTo("/");
         } catch (Exception e) { }
     }
 
