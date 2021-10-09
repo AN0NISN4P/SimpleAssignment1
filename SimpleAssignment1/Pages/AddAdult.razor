@@ -1,6 +1,9 @@
 ﻿@page "/AddAdult"
+@attribute [Authorize(Policy = "SecurityLevel2")]
 @using Models
 @using Data
+@using global::Models
+@using Microsoft.AspNetCore.Components
 
 @inject IPersonHandler _personHandler
 @inject NavigationManager _navMgr
@@ -104,7 +107,7 @@
     private void AddNewAdult()
     {
         _personHandler.NewAdult(_newAdult);
-        _navMgr.NavigateTo("Adults");
+        _navMgr.NavigateTo("/Adults");
     }
 
 }

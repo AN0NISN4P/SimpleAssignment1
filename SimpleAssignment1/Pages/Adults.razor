@@ -1,12 +1,11 @@
 ﻿@page "/Adults"
-@using Models
-@using FileData
-@using Microsoft.AspNetCore.Mvc.RazorPages
+@using global::Models
 @using SimpleAssignment1.Data
 
 
 @inject NavigationManager _navMgr
 @inject IPersonHandler _personHandler
+@inject AuthenticationStateProvider _auth
 
 
 <h3>Adult list</h3>
@@ -44,7 +43,10 @@ else
             <th>Sex</th>
             <th>Job</th>
             <th>Salary</th>
-            <th>Delete</th>
+            <AuthorizeView Policy="SecurityLevel3">
+                <th>Delete</th>
+                <th>Edit</th>
+            </AuthorizeView>
         </tr>
         </thead>
         <tbody>
@@ -62,16 +64,20 @@ else
                 <td>@item.Sex</td>
                 <td>@item.Job.JobTitle</td>
                 <td>@item.Job.Salary</td>
-                <td>
-                    <button @onclick="@(() => RemovePerson(item.Id))">
-                        <i class="oi oi-trash" style="color: #ff0000"/>
-                    </button>
-                </td>
-                <td>
-                    <button @onclick="@(() => EditPerson(item.Id))">
-                        <i class="oi oi-pencil" style="color:#1b6ec2"/>
-                    </button>
-                </td>
+                <AuthorizeView Policy="SecurityLevel3">
+
+                    <td>
+                        <button @onclick="@(() => RemovePerson(item.Id))">
+                            <i class="oi oi-trash" style="color: #ff0000"/>
+                        </button>
+                    </td>
+                    <td>
+                        <button @onclick="@(() => EditPerson(item.Id))">
+                            <i class="oi oi-pencil" style="color: #1b6ec2"/>
+                        </button>
+                    </td>
+                </AuthorizeView>
+
             </tr>
         }
         </tbody>
@@ -114,7 +120,8 @@ else
 
     private void EditPerson(int id)
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"Navigating to Edit Page for Person {id}");
+        _navMgr.NavigateTo($"/EditPage/{id}");
     }
 
 }

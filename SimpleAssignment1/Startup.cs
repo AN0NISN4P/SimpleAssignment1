@@ -1,45 +1,65 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimpleAssignment1.Authentication;
 using SimpleAssignment1.Data;
+using SimpleAssignment1.Data.Implementations;
 
-namespace SimpleAssignment1 {
-	public class Startup {
-		public Startup(IConfiguration configuration) {
+namespace SimpleAssignment1
+{
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
 			Configuration = configuration;
 		}
 
-		public IConfiguration Configuration {
-			get;
-		}
+		public IConfiguration Configuration { get; }
 
 		// This method gets called by the runtime. Use this method to add services to the container.
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-		public void ConfigureServices(IServiceCollection services) {
-			services.AddRazorPages( );
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddRazorPages();
 			services.AddServerSideBlazor();
 			services.AddSingleton<IPersonHandler, PersonHandler>();
+			services.AddScoped<IUserService, UserService>();
+			services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+
+			services.AddAuthorization(options =>
+			{
+				options.AddPolicy("SecurityLevel1", a => a.RequireClaim("Level", "1", "2", "3"));
+				options.AddPolicy("SecurityLevel2", a => a.RequireClaim("Level", "2", "3"));
+				options.AddPolicy("SecurityLevel3", a => a.RequireClaim("Level", "3"));
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-			if (env.IsDevelopment( )) {
-				app.UseDeveloperExceptionPage( );
-			} else {
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
+			else
+			{
 				app.UseExceptionHandler("/Error");
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-				app.UseHsts( );
+				app.UseHsts();
 			}
 
-			app.UseHttpsRedirection( );
-			app.UseStaticFiles( );
+			app.UseHttpsRedirection();
+			app.UseStaticFiles();
 
-			app.UseRouting( );
+			app.UseRouting();
 
-			app.UseEndpoints(endpoints => {
-				endpoints.MapBlazorHub( );
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapBlazorHub();
 				endpoints.MapFallbackToPage("/_Host");
 			});
 		}

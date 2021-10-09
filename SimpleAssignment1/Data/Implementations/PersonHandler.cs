@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FileData;
 using Models;
+using SimpleAssignment1.Models;
 
-namespace SimpleAssignment1.Data
+namespace SimpleAssignment1.Data.Implementations
 {
 	public class PersonHandler : IPersonHandler
 	{
@@ -32,7 +34,17 @@ namespace SimpleAssignment1.Data
 
 		public Adult GetAdult(int id)
 		{
-			return _fileContext.Adults.First(adult => adult.Id == id);
+			Adult a = _fileContext.Adults.FirstOrDefault(adult => adult.Id == id);
+			return a;
+		}
+
+		public void UpdateAdult(Adult updatedAdult)
+		{
+			Adult a = GetAdult(updatedAdult.Id);
+			int idx = _fileContext.Adults.IndexOf(a);
+			_fileContext.Adults.RemoveAt(idx);
+			_fileContext.Adults.Insert(idx, updatedAdult);
+			_fileContext.SaveChanges();
 		}
 
 		public IList<Adult> LoadAdults()

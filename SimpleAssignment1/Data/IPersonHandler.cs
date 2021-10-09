@@ -9,6 +9,7 @@ namespace SimpleAssignment1.Data
 		void NewAdult(Adult newAdult);
 		void RemoveAdult(int id);
 		Adult GetAdult(int id);
+		void UpdateAdult(Adult updatedAdult);
 		IList<Adult> LoadAdults();
 	}
 }
