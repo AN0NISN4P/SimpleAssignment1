@@ -106,8 +106,6 @@ else
     {
         string name = evt.Value?.ToString();
 
-        Console.WriteLine(name);
-
         if (name.Length != 0)
         {
             _shownAdults = _allAdults.Where(a => a.FirstName.ToLower().Contains(name.ToLower()) || a.LastName.ToLower().Contains(name.ToLower())).ToList();
@@ -120,7 +118,6 @@ else
 
     private void EditPerson(int id)
     {
-        Console.WriteLine($"Navigating to Edit Page for Person {id}");
         _navMgr.NavigateTo($"/EditPage/{id}");
     }
 
