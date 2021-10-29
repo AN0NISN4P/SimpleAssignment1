@@ -50,7 +50,7 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var item in _shownAdults)
+        @foreach (Adult item in _shownAdults)
         {
             <tr>
                 <td>@item.Id</td>
@@ -68,12 +68,12 @@ else
 
                     <td>
                         <button @onclick="@(() => RemovePerson(item.Id))">
-                            <i class="oi oi-trash" style="color: #ff0000"/>
+                            <i class="oi oi-trash" style="color: #ff0000" />
                         </button>
                     </td>
                     <td>
                         <button @onclick="@(() => EditPerson(item.Id))">
-                            <i class="oi oi-pencil" style="color: #1b6ec2"/>
+                            <i class="oi oi-pencil" style="color: #1b6ec2" />
                         </button>
                     </td>
                 </AuthorizeView>
@@ -91,13 +91,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _allAdults = _personHandler.LoadAdults();
+        _allAdults = await _personHandler.LoadAdults();
         _shownAdults = _allAdults;
+        Adult a = _shownAdults.First();
     }
 
-    private void RemovePerson(int id)
+    private async void RemovePerson(int id)
     {
-        _personHandler.RemoveAdult(id);
+        string statusCode = await _personHandler.RemoveAdult(id);
         OnInitializedAsync();
     }
 

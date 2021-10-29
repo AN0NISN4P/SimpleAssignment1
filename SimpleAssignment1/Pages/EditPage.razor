@@ -106,7 +106,7 @@
     private Adult _adult;
 
     protected override async Task OnInitializedAsync( ) {
-        _adult = _personHandler.GetAdult(Id);
+        _adult = await _personHandler.GetAdult(Id);
     }
 
     private void UpdateAdult( ) {

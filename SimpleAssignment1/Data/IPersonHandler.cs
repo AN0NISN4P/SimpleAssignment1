@@ -1,15 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Models;
 
 namespace SimpleAssignment1.Data
 {
 	public interface IPersonHandler
 	{
-		void NewAdult(Adult newAdult);
-		void RemoveAdult(int id);
-		Adult GetAdult(int id);
-		void UpdateAdult(Adult updatedAdult);
-		IList<Adult> LoadAdults();
+		Task NewAdult(Adult newAdult);
+		Task<String> RemoveAdult(int id);
+		Task<Adult> GetAdult(int id);
+		Task UpdateAdult(Adult updatedAdult);
+		Task<IList<Adult>> LoadAdults();
 	}
 }
