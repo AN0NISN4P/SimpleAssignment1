@@ -46,7 +46,13 @@ namespace SimpleAssignment1.Data.Implementations
 			using HttpClient client = new();
 			string userAsString = JsonSerializer.Serialize(user);
 			StringContent userStringContent = new(userAsString, Encoding.UTF8, "application/json");
+			Console.WriteLine("Sending login information");
+
+			// Status er, at den simpelthen ikke kan sende... det er sku da træls
 			HttpResponseMessage response = await client.PostAsync($"{URL}/User", userStringContent);
+			
+			// Doesn't ever reach here... tf?
+			Console.WriteLine("User has been posted");
 			if (response.StatusCode == HttpStatusCode.OK)
 			{
 				return user;

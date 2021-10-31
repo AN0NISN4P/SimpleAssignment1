@@ -27,6 +27,7 @@ namespace SimpleAssignment1
 			services.AddRazorPages();
 			services.AddServerSideBlazor();
 			services.AddSingleton<IPersonHandler, PersonHandler>();
+			services.AddSingleton<RestClient, RestClient>();
 			services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
 			services.AddAuthorization(options =>

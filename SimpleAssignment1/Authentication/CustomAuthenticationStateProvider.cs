@@ -18,10 +18,11 @@ namespace SimpleAssignment1.Authentication
 
 		private User cachedUser;
 
-		public CustomAuthenticationStateProvider(IJSRuntime jsRuntime)
+		public CustomAuthenticationStateProvider(IJSRuntime jsRuntime, RestClient client)
 		{
 			_jsRuntime = jsRuntime;
-			_client = new();
+			_client = client;
+			Console.WriteLine(_client);
 		}
 
 		public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -52,7 +53,7 @@ namespace SimpleAssignment1.Authentication
 				throw new Exception("Enter username");
 			if (string.IsNullOrEmpty(password))
 				throw new Exception("Enter password");
-
+			Console.WriteLine("Possible credentials, checking account");
 			ClaimsIdentity identity = new ClaimsIdentity();
 			try
 			{
